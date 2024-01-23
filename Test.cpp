@@ -1,4 +1,4 @@
-#include <assert.h>
+#include <cassert>
 #include "Complex.h"
 #include <iostream>
 
@@ -102,17 +102,13 @@ void DivisionOperators() {
 	cout << "TestDivisionOperators is OK" << endl;
 }
 
-void PowMethod() {
-	Comp_number test1(2, 3);
-	Comp_number ans(-46, 9);
-
-	double exp = 3;
-
-	assert(test1.comp_pow(exp) == ans);
-
-	cout << "TestCompPowMethod is OK" << endl;
+void TestCompPowMethod() {
+    Comp_number test1(2, 3), test2(-46, 9);
+    double exp = 3;
+    test1 = test1 ^ exp;
+    assert(test1 == test2);
+    cout << "TestCompPowMethod is OK" << endl;
 }
-
 
 int main() {
 	getValidPart();
@@ -124,6 +120,6 @@ int main() {
 	SubtractionOperators();
 	MultiplicationOperators();
 	DivisionOperators();
-	PowMethod();
+    TestCompPowMethod();
 	return 0;
 }

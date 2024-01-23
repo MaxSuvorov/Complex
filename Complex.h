@@ -30,7 +30,7 @@ public:
 
     bool operator==(double num);
 
-    Comp_number comp_pow(int step);
+    Comp_number operator^(int exp) const;
 
     double getMagnitude() const;
 

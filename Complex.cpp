@@ -1,5 +1,5 @@
 ﻿#include "Complex.h"
-#include "math.h"
+#include <cmath>
 
 double Comp_number::getReal() const {
     return real;
@@ -58,17 +58,20 @@ bool Comp_number::operator!=(const Comp_number& other) const {
 
 
 
-double Comp_number::getMagnitude() const {   // Модуль
+double Comp_number::getMagnitude() const {   //модуль
     return sqrt((real * real) + (imaginary * imaginary));
 }
 
-Comp_number Comp_number::comp_pow(int step) {
-    double modul = getMagnitude();
-    double angle = atan(imaginary / real);
+Comp_number Comp_number::operator^(int exp) const { //степень
+    if (exp < 0) {
+        throw std::logic_error("Negative exponent is not supported.");
+    }
 
-    double valid_part_res = pow(modul, step) * cos(angle * step);
-    double imaginary_part_res = pow(modul, step) * sin(angle * step);
+    Comp_number result(1, 0);
 
-    return Comp_number(valid_part_res, imaginary_part_res);
+    for (int i = 0; i < exp; i++) {
+        result = result * (*this);
+    }
+    return result;
 }
 
